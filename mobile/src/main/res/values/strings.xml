@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">SpeedLockTimer</string>
+    <string name="permission_info">If you checked \"Never ask again\", you can allow permissions in the Application Manager.</string>
+    <string name="need_gps">GPS is required for this app to work. SpeedLockTimer will not function without these permissions. You will be asked one more time.</string>
+    <string name="quitting">SpeedLockTimer will not function without the requested permissions and will now quit.</string>
+    <string name="quit">Tap back again to quit.</string>
+</resources>
