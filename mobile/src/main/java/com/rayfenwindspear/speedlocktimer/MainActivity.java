@@ -12,6 +12,7 @@ import android.os.Handler;
 import android.os.SystemClock;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.transition.AutoTransition;
@@ -19,8 +20,14 @@ import android.transition.Scene;
 import android.transition.TransitionManager;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.google.android.gms.appindexing.Action;
@@ -34,6 +41,8 @@ import com.google.android.gms.maps.model.LatLng;
 import com.rayfenwindspear.speedlocktimer.Containers.MainContainer;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements
         GoogleApiClient.ConnectionCallbacks,
@@ -71,8 +80,9 @@ public class MainActivity extends AppCompatActivity implements
     long timeSwapBuff = 0L;
     long updatedTime = 0L;
 
-    //long speedBarrier = 60*1000; // in meters/h
-    long speedBarrier = 3*1000; // in meters/h
+    long speedBarrier = 60*1000; // in meters/h
+
+    private Menu menu;
 
 
     @Override
@@ -89,6 +99,40 @@ public class MainActivity extends AppCompatActivity implements
 
         }
         permissionsAsk();
+    }
+
+    public class CustomOnItemSelectedListener implements AdapterView.OnItemSelectedListener {
+
+        public void onItemSelected(AdapterView<?> parent, View view, int pos,long id) {
+            Log.i(TAG, "Speed barrier adjusted to: "+parent.getItemAtPosition(pos).toString()+" kph");
+            speedBarrier = Integer.parseInt(parent.getItemAtPosition(pos).toString())*1000;
+        }
+
+        @Override
+        public void onNothingSelected(AdapterView<?> arg0) {
+            // TODO Auto-generated method stub
+        }
+
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.options, menu);
+        MenuItem item = menu.findItem(R.id.barrier_spinner);
+        Spinner spinner = (Spinner) MenuItemCompat.getActionView(item);
+
+        List<String> list = new ArrayList<String>();
+        for (int i=3; i<=70; i++) {
+            list.add(String.format("%d",i));
+        }
+
+        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,
+                R.layout.my_spinner, list);
+
+        spinner.setAdapter(dataAdapter); // set the adapter to provide layout of rows and content
+        spinner.setOnItemSelectedListener(new CustomOnItemSelectedListener());
+        spinner.setSelection(57);
+        return super.onCreateOptionsMenu(menu);
     }
 
     private void permissionsAsk() {
