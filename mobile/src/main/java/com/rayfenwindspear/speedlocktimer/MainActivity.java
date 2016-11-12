@@ -82,8 +82,6 @@ public class MainActivity extends AppCompatActivity implements
 
     long speedBarrier = 60*1000; // in meters/h
 
-    private Menu menu;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

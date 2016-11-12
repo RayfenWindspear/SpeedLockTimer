@@ -84,7 +84,11 @@ public class MainView extends BaseContainerView {
     }
 
     public void updateAccuracy(int i) {
-        accuracy.setText(String.format("Acc: %3d ft", i));
+        if (displayFeet) {
+            accuracy.setText(String.format("Acc: %3d ft", Math.round(i*3.28084)));
+        } else {
+            accuracy.setText(String.format("Acc: %3d m", i));
+        }
     }
 
     public void updateDistance(double dist) {
