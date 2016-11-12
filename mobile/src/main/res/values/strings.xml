@@ -4,4 +4,11 @@
     <string name="need_gps">GPS is required for this app to work. SpeedLockTimer will not function without these permissions. You will be asked one more time.</string>
     <string name="quitting">SpeedLockTimer will not function without the requested permissions and will now quit.</string>
     <string name="quit">Tap back again to quit.</string>
+    <string name="timerVal">00:00:00</string>
+    <string name="pauseButtonLabel">Pause</string>
+    <string name="startButtonLabel">Mark</string>
+    <string name="accuracyNA">Acc: NA</string>
+    <string name="distanceNA">Dist: NA</string>
+    <string name="speedNA">Spd: NA</string>
+
 </resources>

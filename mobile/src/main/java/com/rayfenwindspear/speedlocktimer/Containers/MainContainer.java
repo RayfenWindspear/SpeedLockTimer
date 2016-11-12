@@ -23,7 +23,7 @@ public class MainContainer extends BaseContainer {
         super.onFinishInflate();
         mainView = (MainView) findViewById(R.id.main_view);
         mainView.setContainer(this);
-        currentView = R.layout.activity_main;
+        currentView = R.layout.main_view;
     }
 
     /**
@@ -46,5 +46,9 @@ public class MainContainer extends BaseContainer {
     @Override
     public void reInitDefaultUI() {
         viewsKilled = false;
+    }
+
+    public MainView getMainView() {
+        return mainView;
     }
 }
