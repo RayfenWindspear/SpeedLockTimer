@@ -1,27 +1,24 @@
 package com.rayfenwindspear.speedlocktimer;
 
-import android.*;
 import android.Manifest;
 import android.content.IntentSender;
 import android.content.pm.PackageManager;
 import android.location.Location;
-import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
+import android.os.Bundle;
 import android.os.Handler;
 import android.os.SystemClock;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.transition.AutoTransition;
 import android.transition.Scene;
 import android.transition.TransitionManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -30,17 +27,13 @@ import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.google.android.gms.appindexing.Action;
-import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
-import com.google.android.gms.maps.model.LatLng;
 import com.rayfenwindspear.speedlocktimer.Containers.MainContainer;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -80,7 +73,8 @@ public class MainActivity extends AppCompatActivity implements
     long timeSwapBuff = 0L;
     long updatedTime = 0L;
 
-    long speedBarrier = 60*1000; // in meters/h
+    // long speedBarrier = 60*1000; // in meters/h 60km/h was for old ingress
+    long speedBarrier = 15*1000; // in meters/h 15km/h is for HPWU
 
 
     @Override
@@ -129,7 +123,7 @@ public class MainActivity extends AppCompatActivity implements
 
         spinner.setAdapter(dataAdapter); // set the adapter to provide layout of rows and content
         spinner.setOnItemSelectedListener(new CustomOnItemSelectedListener());
-        spinner.setSelection(57);
+        spinner.setSelection(12); // default to 15km/h, which is item 12
         return super.onCreateOptionsMenu(menu);
     }
 

@@ -1,22 +1,12 @@
 package com.rayfenwindspear.speedlocktimer.View.Main;
 
 import android.content.Context;
-import android.location.Location;
-import android.os.Handler;
-import android.os.SystemClock;
 import android.util.AttributeSet;
-import android.util.Log;
-import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.location.LocationRequest;
-import com.google.android.gms.location.LocationServices;
-import com.google.android.gms.maps.model.LatLng;
 import com.rayfenwindspear.speedlocktimer.MainActivity;
 import com.rayfenwindspear.speedlocktimer.R;
-import com.rayfenwindspear.speedlocktimer.SpeedLockTimerApplication;
 import com.rayfenwindspear.speedlocktimer.View.BaseContainerView;
 
 /**
