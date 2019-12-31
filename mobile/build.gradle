@@ -1,36 +1,49 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 23
-    buildToolsVersion "23.0.1"
+    compileSdkVersion 29
+    buildToolsVersion '29.0.2'
     defaultConfig {
         applicationId "com.rayfenwindspear.speedlocktimer"
-        minSdkVersion 19
-        targetSdkVersion 23
+        minSdkVersion 23
+        targetSdkVersion 27
         versionCode 1
-        versionName "1.0"
+        versionName '1.1'
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        versionNameSuffix = 'alpha'
+        signingConfig signingConfigs.debug
+        proguardFiles 'proguard-rules.pro'
+        manifestPlaceholders = [:]
+        multiDexEnabled = true
     }
     buildTypes {
         release {
             minifyEnabled true
             shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            multiDexEnabled = true
+            signingConfig signingConfigs.debug
         }
         debug {
             minifyEnabled true
             shrinkResources true
+            signingConfig signingConfigs.debug
+            multiDexEnabled = true
         }
+    }
+    compileOptions {
+        sourceCompatibility = 1.8
+        targetCompatibility = 1.8
     }
 }
 
 dependencies {
-    compile fileTree(include: ['*.jar'], dir: 'libs')
-    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    wearApp project(':wear')
-    compile 'com.google.android.gms:play-services:9.8.0'
-    compile 'com.android.support:appcompat-v7:23.4.0'
-    testCompile 'junit:junit:4.12'
+//    wearApp project(':wear')
+    implementation 'com.google.android.gms:play-services:11.0.4'
+    implementation 'com.android.support:appcompat-v7:25.3.1'
+    testImplementation 'junit:junit:4.12'
 }
